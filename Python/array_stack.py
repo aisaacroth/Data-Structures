@@ -20,7 +20,7 @@ class ArrayStack:
         return temp
 
     def add(self, i, new_value):
-        if self.count = len(self.array):
+        if self.count == len(self.array):
             self.resize()
         j = i
         for j in range(self.count):
