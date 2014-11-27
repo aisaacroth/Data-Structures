@@ -12,11 +12,13 @@ class ArrayStack:
         self.count = 0
 
     def get(self,i):
+        ''' Operates in O(1) time '''
         if i < 0 or i >= self.count:
             raise IndexError()
         return self.array[i]
 
     def set(self, i, new_value):
+        ''' Operates in O(1) time '''
         if i < 0 or i >= self.count:
             raise IndexError()
         temp = self.array[i]
@@ -24,6 +26,7 @@ class ArrayStack:
         return temp
 
     def add(self, i, new_value):
+        ''' Operates in O(1 + n - i) time '''
         if self.count == len(self.array):
             self.resize()
         self.array[i + 1: self.count + 1] = self.array[i: self.count]
@@ -31,6 +34,7 @@ class ArrayStack:
         self.count += 1
 
     def remove(self, i):
+        ''' Operates in O(1 + n - i) time '''
         if i < 0 or i >= self.count:
             raise IndexError()
         temp = self.array[i]
