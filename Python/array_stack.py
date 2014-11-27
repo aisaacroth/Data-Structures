@@ -12,9 +12,13 @@ class ArrayStack:
         self.count = 0
 
     def get(self,i):
+        if i < 0 or i >= self.count:
+            raise IndexError()
         return self.array[i]
 
     def set(self, i, new_value):
+        if i < 0 or i >= self.count:
+            raise IndexError()
         temp = self.array[i]
         self.array[i] = new_value
         return temp
@@ -22,18 +26,21 @@ class ArrayStack:
     def add(self, i, new_value):
         if self.count == len(self.array):
             self.resize()
-        j = i
-        for j in range(self.count):
-            self.array[j + 1] = self.array[j]
+        self.array[i + 1: self.count + 1] = self.array[i: self.count]
         self.array[i] = new_value
         self.count += 1
 
     def remove(self, i):
+        if i < 0 or i >= self.count:
+            raise IndexError()
         temp = self.array[i]
-        j = i
-        for j in xrange(self.count):
-            self.array[j] = self.array[j + 1]
+        self.array[i: self.count - 1] = self.array[i + 1: self.count]
         self.count -= 1
         if len(self.array) >= 3 * self.count:
             self.resize()
         return temp
+
+    def resize(self):
+        new_array = [None] * (max(1, 2 * self.count))
+        new_array[0: self.count] = self.array[0: self.count]
+        self.array = new_array

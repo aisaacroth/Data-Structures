@@ -17,16 +17,27 @@ class TestArrayStackFunctions(unittest.TestCase):
         self.assertEqual(self.array_stack.count, 0)
 
     def testArrayStackGet(self):
-        pass
+        self.array_stack.add(0, 'a')
+        value = self.array_stack.get(0)
+        self.assertEqual('a', value)
 
     def testArrayStackSet(self):
-        pass
+        self.array_stack.add(0, 'a')
+        value = self.array_stack.set(0, 1)
+        self.assertEqual('a', value)
+        self.assertIn(1, self.array_stack.array)
+        self.assertEqual(1, self.array_stack.count)
 
     def testArrayStackAdd(self):
-        pass
+        self.array_stack.add(0, 'a')
+        self.assertEqual(self.array_stack.count, 1)
+        self.assertIn('a', self.array_stack.array)
 
     def testArrayStackRemove(self):
-        pass
+        self.array_stack.add(0, 'a')
+        value = self.array_stack.remove(0)
+        self.assertEqual('a', value)
+        self.assertEqual(0, self.array_stack.count)
 
 
 if __name__ == '__main__':
